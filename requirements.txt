@@ -1,0 +1,12 @@
+
+# Healx requirements
+# Use a hash of the commit in the repository you want to install
+# git+ssh://git@github.com/healx/<REPO_NAME>.git@<git hash>#egg=<REPO_SUBMODULE>
+
+# Pip requirements
+attrs<=22.0
+pandas<=1.4.0
+python-dotenv<=0.12
+click<=9.0
+opencv-python
+

@@ -1,0 +1,15 @@
+# Test requirements
+tox==3.24.0
+pytest==6.2.4
+pytest-cov==2.12.1
+
+# Linting
+black==20.8b1
+pylint==2.8.2
+flake8==3.9.1
+
+# Type checks
+mypy==0.910
+
+# Versioning requirements
+bump2version==1.0.1

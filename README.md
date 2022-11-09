@@ -1,0 +1,3 @@
+# WordScapeSolver
+
+Solves WordScape puzzles
