@@ -13,17 +13,19 @@ from wordscapesolver import wordscapesolver as ws
 @click.command()
 @click.argument("xinput", type=str, default=os.getcwd())
 @click.argument("xoutput", type=str, default="-")
-@click.option(
-    "--task",
-    type=click.Choice(["run", "debug"], case_sensitive=False),
+@click.option("--task", type=click.Choice(["run", "debug"], case_sensitive=False),
+    help="run normally or in debug mode. Debug displays letter detection images, click close to continue.",
     default="run")
 @click.option(
-    "--force/--no-force", default=False)
-@click.option("--logfile/--no-logfile", default=False)
-@click.option("--move/--no-move", default=False)
+    "--force/--no-force", default=False,
+    help="Force overwrite of output text.")
+@click.option("--logfile/--no-logfile", help="Save a session log.", default=False)
+@click.option("--move/--no-move", help="Move processed images to an output directory.", default=False)
 def _solveit(xinput: str, xoutput: str, task: str, force: bool, logfile: bool, move: bool) -> None:
     """Given an input directory, iterate over PNG screenshots and process WordScape puzzles.
-       Words are sent to screen or `output` directory
+       Words are sent to standard out (-) or `output` file
+       
+       python -m wordscapesolver.cli.solveit --move --force --task run [input directory] [output file]
     """
     if not logfile:
         logout = sys.stderr
