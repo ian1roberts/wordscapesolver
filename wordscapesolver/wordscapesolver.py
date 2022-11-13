@@ -2,12 +2,13 @@
 import glob
 import itertools
 from pathlib import Path
+from typing import Generator
 
 fpath = Path(__file__)
 DICT = fpath.parent / ".." / "etc" / "british-english.txt"
 
 
-def get_pngs(xinput: str) -> None:
+def get_pngs(xinput: str) -> Generator:
     """Generate list of PNGs to process
 
     Args:
@@ -31,7 +32,7 @@ def get_dict(fpath_dict: Path) -> set:
     Returns:
         set: cleaned list of plausible words
     """
-    if len(fpath_dict) < 1:
+    if fpath_dict == Path():
         fpath_dict = DICT
 
     words = set()
@@ -57,7 +58,7 @@ def solver(letters: str, words: set) -> dict:
     Returns:
         list of found words
     """
-    found = dict()
+    found: dict[int, set] = dict()
     letters = sorted(list(letters))
     for wlen in range(2, len(letters) + 1):
         for wstring in itertools.permutations(letters, wlen):

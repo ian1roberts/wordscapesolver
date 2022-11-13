@@ -69,7 +69,7 @@ def _solveit(
             os.mkdir("output")
 
     # Load dirctionary
-    words = ws.get_dict("")
+    words = ws.get_dict(Path())
 
     # Process all the PNGs, letters & solutions
     for im in ws.get_pngs(xinput):

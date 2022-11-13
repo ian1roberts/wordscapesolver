@@ -15,7 +15,7 @@ OPTSIZE = 25
 ALPHA = set("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 
-def do_contour(cur_contour, img, debug: bool = True) -> chr:
+def do_contour(cur_contour, img, debug: bool = True) -> str:
     """For each detected region
     1. Setup segmentation coordinates from contour detection
     2. If h:w ratio fits a letter, and area is big enough process
@@ -36,7 +36,7 @@ def do_contour(cur_contour, img, debug: bool = True) -> chr:
     lpos = x_loc + width + PAD
     ratio = height / width
     area = cv2.contourArea(cur_contour)
-    letter = False
+    letter = ""
     if ratio > 0.7 and 100 < area < 10000:
         # foreground image
         selection = img[tpos:bpos, rpos:lpos]
@@ -61,7 +61,7 @@ def do_contour(cur_contour, img, debug: bool = True) -> chr:
     return letter
 
 
-def proc_image(img) -> chr:
+def proc_image(img) -> str:
     """For each image file, process ready for OCR
 
     Args:
