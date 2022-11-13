@@ -4,7 +4,8 @@ import itertools
 from pathlib import Path
 
 fpath = Path(__file__)
-DICT = fpath.parent / '..' / 'etc' / "british-english.txt"
+DICT = fpath.parent / ".." / "etc" / "british-english.txt"
+
 
 def get_pngs(xinput: str) -> None:
     """Generate list of PNGs to process
@@ -16,33 +17,35 @@ def get_pngs(xinput: str) -> None:
         list: full path list of PNGs
     """
     xinput = Path(xinput)
-    xquery = str(xinput) + r'\*.png'
-    for im in glob.glob(xquery):
-        yield Path(im)
-    
-def get_dict(fpath: Path) -> set:
+    xquery = str(xinput) + r"\*.png"
+    for cur_image in glob.glob(xquery):
+        yield Path(cur_image)
+
+
+def get_dict(fpath_dict: Path) -> set:
     """Read a file of words
 
     Args:
-        fpath (Path): file path of word list
+        fpath_dict (Path): file path of word list
 
     Returns:
         set: cleaned list of plausible words
     """
-    if len(fpath) < 1:
-        fpath = DICT
+    if len(fpath_dict) < 1:
+        fpath_dict = DICT
 
     words = set()
-    with open(fpath, 'r') as fh:
-        for w in fh.readlines():
-            w = w.strip()
-            if len(w) < 3 or "'" in w:
+    with open(fpath_dict, "r") as fhandle:
+        for words_in in fhandle.readlines():
+            words_in = words_in.strip()
+            if len(words_in) < 3 or "'" in words_in:
                 continue
-            if w[0].isupper():
+            if words_in[0].isupper():
                 continue
-            words.add(w.upper()) 
+            words.add(words_in.upper())
 
     return words
+
 
 def solver(letters: str, words: set) -> dict:
     """Compute all possible words from letters in the dictionary.
@@ -50,14 +53,14 @@ def solver(letters: str, words: set) -> dict:
     Args:
         letters (string): a word to serve as query
         words (set): known permissible words
-        
+
     Returns:
-        list of found words    
+        list of found words
     """
     found = dict()
-    l = sorted(list(letters))
+    letters = sorted(list(letters))
     for wlen in range(2, len(letters) + 1):
-        for wstring in itertools.permutations(l, wlen):
+        for wstring in itertools.permutations(letters, wlen):
             cand = "".join(wstring)
             if cand in words:
                 if wlen in found:
@@ -67,6 +70,7 @@ def solver(letters: str, words: set) -> dict:
                     found[wlen].add(cand)
     return found
 
+
 def print_words(words: dict) -> str:
     """Format the words output
 
@@ -74,12 +78,12 @@ def print_words(words: dict) -> str:
         words (dict): dictionary of words. Key = length, value = words
     """
     msg = "\n"
-    for k, v in words.items():
-        msg += f"{k} letter words\n"
+    for key, values in words.items():
+        msg += f"{key} letter words\n"
         txt = ""
-        for x in sorted(v):
-            txt += f"\t{x}\n"
+        for msg_part in sorted(values):
+            txt += f"\t{msg_part}\n"
         msg += txt
         msg += "\n"
-    
-    return(msg)
+
+    return msg

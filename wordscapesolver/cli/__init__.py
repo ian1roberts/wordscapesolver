@@ -1,0 +1,1 @@
+"""wordscapesolver package"""

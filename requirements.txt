@@ -7,6 +7,6 @@
 attrs<=22.0
 pandas<=1.4.0
 python-dotenv<=0.12
-click<=9.0
+click==8.0.1
 opencv-python
 

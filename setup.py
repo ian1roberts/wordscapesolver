@@ -1,3 +1,4 @@
+"""wordscapesolver package setup module"""
 from setuptools import find_packages, setup
 
 config = {
