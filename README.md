@@ -2,10 +2,26 @@
 
 Solves WordScape puzzles using pytesseract and openCV2 libraries
 Most of the OCR and image manipulation code reused directly from pytesseract examples.
-* [tesseract](https://github.com/tesseract-ocr/tessdoc)
-* [pytesseract](https://pypi.org/project/pytesseract/)
-* [openCV2](https://pypi.org/project/opencv-python/)
+* [tesseract](https://github.com/tesseract-ocr/tessdoc) - OCR application
+* [pytesseract](https://pypi.org/project/pytesseract/) - Python API
+* [openCV2](https://pypi.org/project/opencv-python/) - Image manipulation
+
 My contributions, mostly tweaking tesseract settings to improve letter detection and providing the wrapper.
+
+# Install
+Its recommended to install in a virtual environment
+python -m virtualenv png2txt
+./png2txt/Scripts/activate
+
+You must have a fully working installation of Tesseract OCR and
+set the path to Tesseract in the `imageparse.py` module Line 7
+.. pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract'
+The path currently set is the default installation path for Windows
+
+(png2txt) github clone https://github.com/ian1roberts/wordscapesolver.git
+(png2txt) cd wordscapesolver
+(png2txt) pip install -r requirements.txt
+(png2txt) pip install -e .
 
 
 ## Workflow as follows:
@@ -15,3 +31,28 @@ My contributions, mostly tweaking tesseract settings to improve letter detection
 
 ## Example session
 >> sample images are in the test directory
+This example runs wordscapesolver on the 13 test images in the tests directory,
+and writes the output in a file found.txt
+Progress is displayed in on screen log messages
+
+python -m wordscapesolver.cli.solevit --task run --no-move tests/input found.txt
+
+## Command line
+Usage: python -m wordscapesolver.cli.solveit [OPTIONS] [XINPUT] [XOUTPUT]
+
+  Given an input directory, iterate over PNG screenshots and process WordScape
+  puzzles. Words are sent to standard out (-) or `output` file
+
+  python -m wordscapesolver.cli.solveit --move --force --task run [input
+  directory] [output file]
+
+Options:
+  --task [run|debug]        run normally or in debug mode. Debug displays
+                            letter detection images, click close to continue.
+  --force / --no-force      Force overwrite of output text.
+  --logfile / --no-logfile  Save a session log.
+  --move / --no-move        Move processed images to an output directory.
+  --help                    Show this message and exit.
+
+
+## Developers
