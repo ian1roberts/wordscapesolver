@@ -1,11 +1,13 @@
 import logging
 import os
 import sys
-import click
 from datetime import datetime
 from pathlib import Path
-from wordscapesolver import wordscapesolver as ws
+
+import click
+
 from wordscapesolver import imageparse as ip
+from wordscapesolver import wordscapesolver as ws
 
 
 @click.command()

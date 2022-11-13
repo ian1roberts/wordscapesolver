@@ -1,7 +1,9 @@
+from math import floor
+
 import cv2
 import numpy as np
 import pytesseract
-from math import floor
+
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract'
 custom_config = r'-l eng --oem 3 --psm 10 -c tessedit_char_whitelist="1il:|ABCDEFGHIJKLMNOPQRSTUVWXYZ" '
 pad = 5
