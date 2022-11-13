@@ -37,10 +37,72 @@ The path currently set is the default installation path for Windows
 > sample images are in the test directory
 
 This example runs wordscapesolver on the 13 test images in the tests directory,
-and writes the output in a file found.txt
+and writes the output in a file `found.txt`
 Progress is displayed in on screen log messages
 
     python -m wordscapesolver.cli.solevit --task run --no-move tests/input found.txt
+
+````(png2txt) wordscapesolver> python -m wordscapesolver.cli.solveit --task run --force --no-move .\tests\input\ found.txt
+INFO:__main__:wordscapesolver.cli.solveit --task run found.txt .\tests\input\
+INFO:__main__:Reading input from .\tests\input\ and writing output to found.txt
+INFO:__main__:Working on ... img01.png
+INFO:__main__:Processed img01.png --> BESLOU
+INFO:__main__:  3 letter words ...      7
+INFO:__main__:  4 letter words ...      11
+INFO:__main__:  5 letter words ...      5
+INFO:__main__:  6 letter words ...      1
+INFO:__main__:  Longest words ... BLOUSE
+INFO:__main__:Done img01.png    24 words found.
+````
+... etc etc
+
+````INFO:__main__:Working on ... img13.png
+INFO:__main__:Processed img13.png --> ADYRAWW
+INFO:__main__:  3 letter words ...      9
+INFO:__main__:  4 letter words ...      7
+INFO:__main__:  5 letter words ...      1
+INFO:__main__:  7 letter words ...      1
+INFO:__main__:  Longest words ... WAYWARD
+INFO:__main__:Done img13.png    18 words found.
+````
+View all the found words in the output file `found.txt`
+    
+    cat found.txt # just the last example
+    
+````
+ ================================================================================
+
+img13.png
+ADYRAWW
+
+3 letter words
+        DAY
+        DRY
+        RAW
+        RAY
+        WAD
+        WAR
+        WAY
+        WRY
+        YAW
+
+4 letter words
+        AWAY
+        AWRY
+        DRAW
+        DRAY
+        WARD
+        WARY
+        YARD
+
+5 letter words
+        AWARD
+
+7 letter words
+        WAYWARD
+
+================================================================================
+````
 
 ## Command line
 ````
