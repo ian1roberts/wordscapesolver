@@ -9,4 +9,5 @@ pandas<=1.4.0
 python-dotenv<=0.12
 click==8.0.1
 opencv-python
+pytesseract==0.3.10
 

@@ -1,0 +1,468 @@
+img01.png
+BESLOU
+
+3 letter words
+	BUS
+	LOB
+	SOB
+	SOL
+	SUB
+	SUE
+	USE
+
+4 letter words
+	BLUE
+	BOLE
+	LOBE
+	LOBS
+	LOSE
+	LUBE
+	SLOB
+	SLOE
+	SLUE
+	SOLE
+	SOUL
+
+5 letter words
+	BLUES
+	BOLES
+	LOBES
+	LOUSE
+	LUBES
+
+6 letter words
+	BLOUSE
+
+================================================================================
+
+img02.png
+FUTHERR
+
+3 letter words
+	ERR
+	FER
+	FUR
+	HER
+	HUE
+	HUT
+	REF
+	RUE
+	RUT
+	THE
+
+4 letter words
+	FRET
+	HEFT
+	HURT
+	THRU
+	TRUE
+	TURF
+
+5 letter words
+	TRUER
+
+7 letter words
+	FURTHER
+
+================================================================================
+
+img03.png
+AALSAGN
+
+3 letter words
+	GAL
+	GAS
+	LAG
+	NAG
+	SAG
+
+4 letter words
+	ALAS
+	ALGA
+	ANAL
+	GALA
+	GALS
+	LAGS
+	NAGS
+	SAGA
+	SANG
+	SLAG
+	SNAG
+
+5 letter words
+	GALAS
+	NASAL
+	SLANG
+
+7 letter words
+	LASAGNA
+
+================================================================================
+
+img04.png
+IANYTL
+
+3 letter words
+	AIL
+	ANI
+	ANT
+	ANY
+	LAY
+	LIT
+	NAY
+	NIL
+	NIT
+	TAN
+	TIN
+
+4 letter words
+	ALIT
+	ANTI
+	LAIN
+	LINT
+	NAIL
+	TAIL
+	TINY
+
+5 letter words
+	INLAY
+	LAITY
+
+6 letter words
+	LITANY
+
+================================================================================
+
+img05.png
+TOCLEH
+
+3 letter words
+	COT
+	HOE
+	HOT
+	LET
+	LOT
+	THE
+	THO
+	TOE
+
+4 letter words
+	CLOT
+	COLT
+	COTE
+	ECHO
+	ETCH
+	HOLE
+	LOTH
+
+5 letter words
+	CLOTH
+	HELOT
+	HOTEL
+
+6 letter words
+	CLOTHE
+
+================================================================================
+
+img06.png
+IEHSPVE
+
+3 letter words
+	EVE
+	HEP
+	HES
+	HIE
+	HIP
+	HIS
+	PEE
+	PIE
+	PIS
+	SEE
+	SHE
+	SIP
+	VIE
+
+4 letter words
+	EVES
+	HIES
+	HIPS
+	HIVE
+	PEES
+	PIES
+	SEEP
+	SHIP
+	VEEP
+	VIES
+	VISE
+
+5 letter words
+	HIVES
+	SHEEP
+	SIEVE
+	VEEPS
+
+7 letter words
+	PEEVISH
+
+================================================================================
+
+img07.png
+RMEAEK
+
+3 letter words
+	ARE
+	ARK
+	ARM
+	EAR
+	EKE
+	ERA
+	ERE
+	MAR
+	RAM
+
+4 letter words
+	MAKE
+	MARE
+	MARK
+	MEEK
+	MERE
+	RAKE
+	REAM
+	REEK
+
+5 letter words
+	AMEER
+	MAKER
+
+6 letter words
+	REMAKE
+
+================================================================================
+
+img08.png
+LETRNCE
+
+3 letter words
+	EEL
+	ERE
+	LEE
+	LET
+	NET
+	TEE
+	TEN
+
+4 letter words
+	CENT
+	LEER
+	LENT
+	REEL
+	RENT
+	TEEN
+	TERN
+	TREE
+
+5 letter words
+	CREEL
+	ELECT
+	ENTER
+	ERECT
+
+6 letter words
+	CENTRE
+	RECENT
+	RELENT
+
+7 letter words
+	LECTERN
+
+================================================================================
+
+img09.png
+TSEOHSS
+
+3 letter words
+	HES
+	HOE
+	HOS
+	HOT
+	OHS
+	SET
+	SHE
+	SOS
+	SOT
+	THE
+	THO
+	TOE
+
+4 letter words
+	HOES
+	HOSE
+	HOST
+	SETS
+	SHES
+	SHOE
+	SHOT
+	SOTS
+	TOES
+	TOSS
+
+5 letter words
+	ETHOS
+	HOSES
+	HOSTS
+	SHOES
+	SHOTS
+	THOSE
+
+6 letter words
+	TOSSES
+
+7 letter words
+	HOSTESS
+
+================================================================================
+
+img10.png
+EDDALY
+
+3 letter words
+	ADD
+	ALE
+	AYE
+	DAD
+	DAY
+	DYE
+	LAD
+	LAY
+	LEA
+	LED
+	LYE
+	YEA
+
+4 letter words
+	DALE
+	DEAD
+	DEAL
+	DYED
+	EDDY
+	LADE
+	LADY
+	LEAD
+
+5 letter words
+	ADDLE
+	DELAY
+	LADED
+
+6 letter words
+	DEADLY
+
+================================================================================
+
+img11.png
+YWOLSL
+
+3 letter words
+	LOW
+	OWL
+	SLY
+	SOL
+	SOW
+	SOY
+
+4 letter words
+	LOWS
+	OWLS
+	SLOW
+	YOWL
+
+5 letter words
+	LOWLY
+	YOWLS
+
+6 letter words
+	SLOWLY
+
+================================================================================
+
+img12.png
+USNCIHO
+
+3 letter words
+	CHI
+	CON
+	HIS
+	HOS
+	INS
+	ION
+	IOS
+	OHS
+	SIC
+	SIN
+	SON
+	SUN
+
+4 letter words
+	CHIN
+	COIN
+	CONS
+	ICON
+	INCH
+	IONS
+	NOSH
+	NOUS
+	ONUS
+	OUCH
+	SHIN
+	SHUN
+	SUCH
+
+5 letter words
+	CHINO
+	CHINS
+	COINS
+	ICONS
+	SCION
+	SONIC
+
+6 letter words
+	CHINOS
+	COUSIN
+
+7 letter words
+	CUSHION
+
+================================================================================
+
+img13.png
+ADYRAWW
+
+3 letter words
+	DAY
+	DRY
+	RAW
+	RAY
+	WAD
+	WAR
+	WAY
+	WRY
+	YAW
+
+4 letter words
+	AWAY
+	AWRY
+	DRAW
+	DRAY
+	WARD
+	WARY
+	YARD
+
+5 letter words
+	AWARD
+
+7 letter words
+	WAYWARD
+
+================================================================================
+

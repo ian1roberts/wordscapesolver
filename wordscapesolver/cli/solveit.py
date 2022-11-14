@@ -32,7 +32,7 @@ from wordscapesolver import wordscapesolver as ws
     help="Move processed images to an output directory.",
     default=False,
 )
-def _solveit(
+def solveit(
     xinput: str, xoutput: str, task: str, force: bool, logfile: bool, move: bool
 ) -> None:
     """Given an input directory, iterate over PNG screenshots and process WordScape puzzles.
@@ -102,4 +102,4 @@ def _solveit(
 
 
 if __name__ == "__main__":
-    _solveit()
+    solveit()
