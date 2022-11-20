@@ -1,3 +1,7 @@
-recursive-include etc *.txt
-recursive-include tests *.png *.txt
-
+  include *.txt
+  include .bumpversion.cfg
+  include Makefile
+  include tox.ini
+  recursive-include bin *.sh
+  recursive-include tests *.py *.png *.txt
+  recursive-include wordscapesolver *.txt
