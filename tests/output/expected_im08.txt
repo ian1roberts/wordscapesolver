@@ -1,0 +1,38 @@
+img08.png
+LETRNCE
+
+3 letter words
+	EEL
+	ERE
+	LEE
+	LET
+	NET
+	TEE
+	TEN
+
+4 letter words
+	CENT
+	LEER
+	LENT
+	REEL
+	RENT
+	TEEN
+	TERN
+	TREE
+
+5 letter words
+	CREEL
+	ELECT
+	ENTER
+	ERECT
+
+6 letter words
+	CENTRE
+	RECENT
+	RELENT
+
+7 letter words
+	LECTERN
+
+================================================================================
+

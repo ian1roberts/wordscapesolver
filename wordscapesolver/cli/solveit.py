@@ -11,6 +11,36 @@ from wordscapesolver import imageparse as ip
 from wordscapesolver import wordscapesolver as ws
 
 
+def _proc_current_image(im, logger, words, move, fout):
+    "Process the current image"
+    logger.info("Working on ... %s", im.name)
+    letters = ip.proc_image(im)
+    logger.info("Processed %s --> %s", im.name, letters)
+    if "*" in set(letters):
+        logger.debug("!! Failed to decode letters !!")
+    allwords = ws.solver(letters, words)
+
+    tot = 0
+    for cur_key, cur_values in allwords.items():
+        logger.info("\t%s letter words ...\t%s", cur_key, len(cur_values))
+        tot += len(cur_values)
+    lwords = " ".join(cur_values)
+    logger.info("\tLongest words ... %s", lwords)
+
+    # tidy up
+    if move:
+        newname = Path(im.parent) / ".." / "output" / im.name
+        logger.info("Move %s --> %s", str(im.resolve()), str(newname.resolve()))
+        im.rename(newname)
+
+    msg = ws.print_words(allwords)
+    fout.write(im.name + "\n")
+    fout.write(letters + "\n")
+    fout.write(msg)
+    fout.write("=" * 80 + "\n\n")
+    logger.info("Done %s\t%s words found.\n", im.name, tot)
+
+
 @click.command()
 @click.argument("xinput", type=str, default=os.getcwd())
 @click.argument("xoutput", type=str, default="-")
@@ -71,34 +101,12 @@ def solveit(
     # Load dirctionary
     words = ws.get_dict(Path())
 
-    # Process all the PNGs, letters & solutions
-    for im in ws.get_pngs(xinput):
-        logger.info("Working on ... %s", im.name)
-        letters = ip.proc_image(im)
-        logger.info("Processed %s --> %s", im.name, letters)
-        if "*" in set(letters):
-            logger.debug("!! Failed to decode letters !!")
-        allwords = ws.solver(letters, words)
-
-        tot = 0
-        for cur_key, cur_values in allwords.items():
-            logger.info("\t%s letter words ...\t%s", cur_key, len(cur_values))
-            tot += len(cur_values)
-        lwords = " ".join(cur_values)
-        logger.info("\tLongest words ... %s", lwords)
-
-        # tidy up
-        if move:
-            newname = Path(im.parent) / ".." / "output" / im.name
-            logger.info("Move %s --> %s", str(im.resolve()), str(newname.resolve()))
-            im.rename(newname)
-
-        msg = ws.print_words(allwords)
-        fout.write(im.name + "\n")
-        fout.write(letters + "\n")
-        fout.write(msg)
-        fout.write("=" * 80 + "\n\n")
-        logger.info("Done %s\t%s words found.\n", im.name, tot)
+    if str(xinput).endswith(".png"):
+        _proc_current_image(Path(xinput), logger, words, move, fout)
+    else:
+        # Process all the PNGs, letters & solutions
+        for im in ws.get_pngs(xinput):
+            _proc_current_image(im, logger, words, move, fout)
 
 
 if __name__ == "__main__":

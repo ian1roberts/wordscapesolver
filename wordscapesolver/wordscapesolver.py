@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Generator
 
 fpath = Path(__file__)
-DICT = fpath.parent / ".." / "etc" / "british-english.txt"
+DICT = fpath.parent / "etc" / "british-english.txt"
 
 
 def get_pngs(xinput: str) -> Generator:

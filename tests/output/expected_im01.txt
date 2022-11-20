@@ -1,0 +1,36 @@
+img01.png
+BESLOU
+
+3 letter words
+	BUS
+	LOB
+	SOB
+	SOL
+	SUB
+	SUE
+	USE
+
+4 letter words
+	BLUE
+	BOLE
+	LOBE
+	LOBS
+	LOSE
+	LUBE
+	SLOB
+	SLOE
+	SLUE
+	SOLE
+	SOUL
+
+5 letter words
+	BLUES
+	BOLES
+	LOBES
+	LOUSE
+	LUBES
+
+6 letter words
+	BLOUSE
+
+================================================================================

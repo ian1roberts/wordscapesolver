@@ -14,6 +14,8 @@ config = {
             "wordscapesolver.*",
         ]
     ),
+    "include_package_data": True,
+    "package_data": {"": ["etc/*.txt"]},
 }
 
 setup(**config)

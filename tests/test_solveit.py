@@ -1,34 +1,39 @@
 """Test the solveit module."""
+import pytest
 from pathlib import Path
+from uuid import uuid4
 from click.testing import CliRunner
 from wordscapesolver.cli.solveit import solveit
 
 testfile_path = Path(__file__)
-test_input =  testfile_path.parent / 'input' / "."
-test_output = testfile_path.parent / 'output' / "foo.txt"
-test_expected = testfile_path.parent / 'output' / "expected_output.txt"
-test_input_str = str(test_input.resolve())
-test_output_str = str(test_output.resolve())
 
-# get the expected output
-with open(test_expected, "r") as expected_in:
-    exp_out = [line.rstrip() for line in expected_in.readlines()]
 
-def test_read_image_files_ok_solveit():
+@pytest.mark.parametrize("test_img, idx, nlines", [("img01.png", "01", 35)])
+def test_read_image_files_ok_solveit(test_img, idx, nlines):
     "Test able to process 13 images in test data input."
-    runner = CliRunner()
-    result = runner.invoke(solveit, [test_input_str, "-"])
-    image_files = [f"img{x:02d}.png" for x in range(1, 14)]
-    for cur_image in image_files:
-        assert cur_image in result.output
 
-def test_all_words_detected_ok_solveit():
-    "All the words are found in all 13 images"
+    def _get_expected_output(xname, typex=True):
+        if typex:
+            fname = f"expected_im{xname}.txt"
+            test_expected = testfile_path.parent / "output" / fname
+        else:
+            test_expected = xname
+        with open(test_expected, "r") as expected_in:
+            exp_out = [line.rstrip() for line in expected_in.readlines()]
+        return exp_out
+
+    tmp_fout = f"temp_{uuid4()}.txt"
     runner = CliRunner()
-    result = runner.invoke(solveit, ["--force", test_input_str, "-"])
-    observed = list(result.output.split("\n"))
-    
-    for idx, (cur_obs, cur_expt) in enumerate(zip(observed, exp_out)):
+    test_img = testfile_path.parent / "input" / test_img
+    tmp_fout = testfile_path.parent / tmp_fout
+    test_img = str(test_img.resolve())
+    tmp_fout = str(tmp_fout.resolve())
+    runner.invoke(solveit, [test_img, tmp_fout], catch_exceptions=False)
+    # assert result.exit_code == 0
+    observed = _get_expected_output(tmp_fout, typex=False)
+    expected = _get_expected_output(idx, typex=True)
+    # Path(tmp_fout).unlink()
+
+    for idx01, (cur_obs, cur_expt) in enumerate(zip(observed, expected)):
         assert cur_obs == cur_expt
-
-    assert idx == 467
+    assert idx01 == nlines
