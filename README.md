@@ -27,6 +27,10 @@ The path currently set is the default installation path for Windows
     (png2txt) pip install -r requirements.txt
     (png2txt) pip install -e .
 
+Testing installation
+```
+  (png2txt) tox . 
+```
 
 ## Workflow as follows:
 1. Take screenshot of puzzle board (on iPhone press volume up and powerswitch simultaneously)
@@ -109,10 +113,11 @@ ADYRAWW
 Usage: python -m wordscapesolver.cli.solveit [OPTIONS] [XINPUT] [XOUTPUT]
 
   Given an input directory, iterate over PNG screenshots and process WordScape
-  puzzles. Words are sent to standard out (-) or `output` file
+  puzzles. User may also supply a single image file.
+  Words are sent to standard out (-) or `output` file
 
   python -m wordscapesolver.cli.solveit --move --force --task run [input
-  directory] [output file]
+  directory or single file] [output file or stdout]
 
 Options:
   --task [run|debug]        run normally or in debug mode. Debug displays
@@ -130,7 +135,11 @@ Install the developer environment with
 
 * Developed with Python3.9.6
 * Tests with pytest
-* CICD with tox
+* Automation with tox
+
+Get started with 
+``` tox . ```
+
 
 
 
