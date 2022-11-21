@@ -11,10 +11,10 @@ from wordscapesolver import imageparse as ip
 from wordscapesolver import wordscapesolver as ws
 
 
-def _proc_current_image(im, logger, words, move, fout):
+def _proc_current_image(im, logger, words, move, fout, flag_debug):
     "Process the current image"
     logger.info("Working on ... %s", im.name)
-    letters = ip.proc_image(im)
+    letters = ip.proc_image(im, flag_debug)
     logger.info("Processed %s --> %s", im.name, letters)
     if "*" in set(letters):
         logger.debug("!! Failed to decode letters !!")
@@ -77,10 +77,19 @@ def solveit(
         logfn = logfn.replace(" ", "-").replace(":", ".")
         logout = open(logfn, "a")
 
-    logging.basicConfig(stream=logout, level=logging.INFO)
+    flag_debug = False
+    log_level = logging.INFO
+    if task.upper() == "DEBUG":
+        log_level = logging.DEBUG
+        flag_debug = True
+    logging.basicConfig(stream=logout, level=log_level)
     logger = logging.getLogger(__name__)
 
     logger.info("wordscapesolver.cli.solveit --task %s %s %s", task, xoutput, xinput)
+    if flag_debug:
+        logger.info(
+            "*** Working in DEBUG mode, you'll need to close image windows to continue. ***"
+        )
     logger.info("Reading input from %s and writing output to %s", xinput, xoutput)
 
     # set up output file if not stdout
@@ -102,11 +111,11 @@ def solveit(
     words = ws.get_dict(Path())
 
     if str(xinput).endswith(".png"):
-        _proc_current_image(Path(xinput), logger, words, move, fout)
+        _proc_current_image(Path(xinput), logger, words, move, fout, flag_debug)
     else:
         # Process all the PNGs, letters & solutions
         for im in ws.get_pngs(xinput):
-            _proc_current_image(im, logger, words, move, fout)
+            _proc_current_image(im, logger, words, move, fout, flag_debug)
 
 
 if __name__ == "__main__":

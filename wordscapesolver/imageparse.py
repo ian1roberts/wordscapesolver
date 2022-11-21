@@ -15,7 +15,7 @@ OPTSIZE = 25
 ALPHA = set("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
 
-def do_contour(cur_contour, img, debug: bool = True) -> str:
+def do_contour(cur_contour, img, debug: bool = False) -> str:
     """For each detected region
     1. Setup segmentation coordinates from contour detection
     2. If h:w ratio fits a letter, and area is big enough process
@@ -56,12 +56,12 @@ def do_contour(cur_contour, img, debug: bool = True) -> str:
             letter = "I"
 
         if debug:
-            cv2.imshow("segment", segment)
+            cv2.imshow("Detected Letter", segment)
             cv2.waitKey(0)
     return letter
 
 
-def proc_image(img) -> str:
+def proc_image(img, flag_debug=False) -> str:
     """For each image file, process ready for OCR
 
     Args:
@@ -78,12 +78,16 @@ def proc_image(img) -> str:
     img = cv2.bilateralFilter(img, 9, 75, 75)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     thresh = cv2.threshold(gray, 150, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
+    if flag_debug:
+        cv2.imshow("Preprocessed Letter Wheel", thresh)
+        cv2.waitKey(0)
+
     items = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     contours = items[0] if len(items) == 2 else items[1]
 
     detected = ""
     for cur_contour in contours:
-        letter = do_contour(cur_contour, thresh, False)
+        letter = do_contour(cur_contour, thresh, flag_debug)
         if letter:
             detected += letter
 
