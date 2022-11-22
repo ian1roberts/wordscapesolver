@@ -15,7 +15,7 @@ config = {
         ]
     ),
     "include_package_data": True,
-    "package_data": {"": ["etc/*.txt"]},
+    "package_data": {"": ["etc/*.txt", "etc/*.ini"]},
 }
 
 setup(**config)

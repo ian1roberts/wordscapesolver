@@ -10,11 +10,14 @@ import click
 from wordscapesolver import imageparse as ip
 from wordscapesolver import wordscapesolver as ws
 
+fpath = Path(__file__).parent / ".."
+fpath = fpath.resolve()
 
-def _proc_current_image(im, logger, words, move, fout, flag_debug):
+
+def _proc_current_image(im, logger, words, move, fout, config, flag_debug):
     "Process the current image"
     logger.info("Working on ... %s", im.name)
-    letters = ip.proc_image(im, flag_debug)
+    letters = ip.proc_image(im, config, flag_debug)
     logger.info("Processed %s --> %s", im.name, letters)
     if "*" in set(letters):
         logger.debug("!! Failed to decode letters !!")
@@ -62,8 +65,19 @@ def _proc_current_image(im, logger, words, move, fout, flag_debug):
     help="Move processed images to an output directory.",
     default=False,
 )
+@click.option(
+    "--config",
+    default=fpath / "etc" / "config.ini",
+    help="Filepath to configuration file (default /etc/config.ini",
+)
 def solveit(
-    xinput: str, xoutput: str, task: str, force: bool, logfile: bool, move: bool
+    xinput: str,
+    xoutput: str,
+    task: str,
+    force: bool,
+    logfile: bool,
+    move: bool,
+    config: Path,
 ) -> None:
     """Given an input directory, iterate over PNG screenshots and process WordScape puzzles.
     Words are sent to standard out (-) or `output` file
@@ -90,6 +104,7 @@ def solveit(
         logger.info(
             "*** Working in DEBUG mode, you'll need to close image windows to continue. ***"
         )
+    logger.info("Loading configuration file: %s", str(config))
     logger.info("Reading input from %s and writing output to %s", xinput, xoutput)
 
     # set up output file if not stdout
@@ -107,15 +122,22 @@ def solveit(
         if not os.path.exists("output"):
             os.mkdir("output")
 
+    # Load configuration file
+    config = ws.load_configuration(config)
+
     # Load dirctionary
-    words = ws.get_dict(Path())
+    dict_path = config["DICTIONARY"]["DICT"]
+    if dict_path == "DEFAULT":
+        dict_path = fpath / "etc" / "british-english.txt"
+    logger.info("Loading Dictionary from: %s", dict_path)
+    words = ws.get_dict(dict_path)
 
     if str(xinput).endswith(".png"):
-        _proc_current_image(Path(xinput), logger, words, move, fout, flag_debug)
+        _proc_current_image(Path(xinput), logger, words, move, fout, config, flag_debug)
     else:
         # Process all the PNGs, letters & solutions
         for im in ws.get_pngs(xinput):
-            _proc_current_image(im, logger, words, move, fout, flag_debug)
+            _proc_current_image(im, logger, words, move, fout, config, flag_debug)
 
 
 if __name__ == "__main__":

@@ -4,4 +4,4 @@
   include tox.ini
   recursive-include bin *.sh
   recursive-include tests *.py *.png *.txt
-  recursive-include wordscapesolver *.txt
+  recursive-include wordscapesolver *.txt *.ini
