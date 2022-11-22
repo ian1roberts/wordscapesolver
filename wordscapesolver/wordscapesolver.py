@@ -4,8 +4,14 @@ import itertools
 from pathlib import Path
 from typing import Generator
 
-fpath = Path(__file__)
-DICT = fpath.parent / "etc" / "british-english.txt"
+import configparser
+
+
+def load_configuration(path_to_config):
+    "Config parser"
+    config = configparser.ConfigParser()
+    config.read([path_to_config])
+    return config
 
 
 def get_pngs(xinput: str) -> Generator:
@@ -32,9 +38,6 @@ def get_dict(fpath_dict: Path) -> set:
     Returns:
         set: cleaned list of plausible words
     """
-    if fpath_dict == Path():
-        fpath_dict = DICT
-
     words = set()
     with open(fpath_dict, "r") as fhandle:
         for words_in in fhandle.readlines():

@@ -1,21 +1,13 @@
 """Provides wordscapesolver with image manipulation and OCR functions"""
 from math import floor
+from pathlib import Path
 
 import cv2
 import numpy as np
 import pytesseract
 
-pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract"
-CUSTOM_CONFIG = (
-    r"""-l eng --oem 3 --psm 10 """
-    """-c tessedit_char_whitelist="1il:|ABCDEFGHIJKLMNOPQRSTUVWXYZ" """
-)
-PAD = 5
-OPTSIZE = 25
-ALPHA = set("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
-
-def do_contour(cur_contour, img, debug: bool = False) -> str:
+def do_contour(cur_contour, img, config, debug: bool = False) -> str:
     """For each detected region
     1. Setup segmentation coordinates from contour detection
     2. If h:w ratio fits a letter, and area is big enough process
@@ -29,6 +21,12 @@ def do_contour(cur_contour, img, debug: bool = False) -> str:
         img (cv2.Image): Image object
         debug (bool, optional): if debug, display intermediate letter detection images
     """
+    # Get globals from config
+    config = config["IMAGE"]
+    PAD = int(config["PAD"])
+    OPTSIZE = int(config["OPTSIZE"])
+    CUSTOM_CONFIG = config["CUSTOM_CONFIG"]
+    pytesseract.pytesseract.tesseract_cmd = str(Path(config["TESSERACT_PATH"]))
     x_loc, y_loc, width, height = cv2.boundingRect(cur_contour)
     tpos = -PAD + y_loc
     bpos = y_loc + height + PAD
@@ -61,7 +59,7 @@ def do_contour(cur_contour, img, debug: bool = False) -> str:
     return letter
 
 
-def proc_image(img, flag_debug=False) -> str:
+def proc_image(img, config, flag_debug=False) -> str:
     """For each image file, process ready for OCR
 
     Args:
@@ -87,7 +85,7 @@ def proc_image(img, flag_debug=False) -> str:
 
     detected = ""
     for cur_contour in contours:
-        letter = do_contour(cur_contour, thresh, flag_debug)
+        letter = do_contour(cur_contour, thresh, config, flag_debug)
         if letter:
             detected += letter
 

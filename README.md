@@ -15,10 +15,9 @@ Its recommended to install in a [virtual environment](https://docs.python.org/3/
     ./png2txt/Scripts/activate
 
 You must have a fully working installation of Tesseract OCR and
-set the path to Tesseract in the `imageparse.py` module Line 7
+set the path to Tesseract in the configuration file (default config is in ./etc/config.ini)
 
-
-    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract'
+    C:\Program Files\Tesseract-OCR\tesseract
 
 The path currently set is the default installation path for Windows
 
@@ -125,8 +124,31 @@ Options:
   --force / --no-force      Force overwrite of output text.
   --logfile / --no-logfile  Save a session log.
   --move / --no-move        Move processed images to an output directory.
+  --config TEXT             Filepath to configuration file (default
+                            /etc/config.ini
   --help                    Show this message and exit.
 ````
+
+## Configuration
+There are a few parameters you can set in the ./etc/config.ini file, as shown
+
+    # Configurations for wordscapesolver
+    [IMAGE]
+    # imageparse.py configs
+    # path to system install of tesseract executable
+    TESSERACT_PATH = C:\Program Files\Tesseract-OCR\tesseract
+    # Padding space to add around images
+    PAD = 5
+    # Optimal size in pixels of images for OCR
+    OPTSIZE = 25
+    # Tesseract inline configuration command
+    CUSTOM_CONFIG = -l eng --oem 3 --psm 10 -c tessedit_char_whitelist="1il:|ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+    [DICTIONARY]
+    # Filepath to dictionary, by default use one in /etc
+    DICT = DEFAULT
+
+You may supply alternative dictionary files to the DEFAULT one supplied in `./etc/british-english.txt` just give the full path to the word file.
 
 ## Developers
 Install the developer environment with
