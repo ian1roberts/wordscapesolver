@@ -2,7 +2,7 @@
 from setuptools import find_packages, setup
 
 config = {
-    "version": "0.3.0",
+    "version": "0.4.0",
     "name": "wordscapesolver",
     "description": "<MODULE_DESCRIPTION>",
     "url": "",
