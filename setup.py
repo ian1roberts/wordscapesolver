@@ -1,5 +1,5 @@
 """wordscapesolver package setup module"""
-from setuptools import find_packages, setup
+from setuptools import find_packages, setup # type: ignore
 
 config = {
     "version": "0.4.0",
