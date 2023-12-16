@@ -4,6 +4,7 @@ import os
 import sys
 from datetime import datetime
 from pathlib import Path
+from typing import TextIO
 
 import click
 
@@ -114,7 +115,7 @@ def solveit(
                 f"Output file exists: {xoutput}\tMaybe try with --force\n"
             )
         else:
-            fout = open(xoutput, "a")
+            fout: TextIO = open(xoutput, "a")
     else:
         fout = sys.stdout
 
@@ -123,21 +124,21 @@ def solveit(
             os.mkdir("output")
 
     # Load configuration file
-    config = ws.load_configuration(config)
+    config_items: dict = ws.load_configuration(config)
 
     # Load dirctionary
-    dict_path = config["DICTIONARY"]["DICT"]
+    dict_path = config_items["DICTIONARY"]["DICT"]
     if dict_path == "DEFAULT":
         dict_path = fpath / "etc" / "british-english.txt"
     logger.info("Loading Dictionary from: %s", dict_path)
     words = ws.get_dict(dict_path)
 
     if str(xinput).endswith(".png"):
-        _proc_current_image(Path(xinput), logger, words, move, fout, config, flag_debug)
+        _proc_current_image(Path(xinput), logger, words, move, fout, config_items, flag_debug)
     else:
         # Process all the PNGs, letters & solutions
         for im in ws.get_pngs(xinput):
-            _proc_current_image(im, logger, words, move, fout, config, flag_debug)
+            _proc_current_image(im, logger, words, move, fout, config_items, flag_debug)
 
 
 if __name__ == "__main__":

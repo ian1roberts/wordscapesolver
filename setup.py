@@ -12,6 +12,10 @@ config = {
         include=[
             "wordscapesolver",
             "wordscapesolver.*",
+            "imageparser",
+            "imageparser.*",
+            "wordscapesolver.cli.solveit",
+            "wordscapesolver.cli.solveit.*"
         ]
     ),
     "include_package_data": True,
